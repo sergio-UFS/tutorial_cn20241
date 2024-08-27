@@ -12,7 +12,7 @@ processados serão feitas as consultas com o AWS Athena.
 
 ### 1. Selecionar conjunto de dados
 
-Fonte utilizada no tutorial: Dados abertos governamentais
+Fonte utilizada no tutorial: Olimpiadas 2024
 > https://www.kaggle.com/datasets/willianoliveiragibin/olympics-2024
 
 [https://github.com/sergio-UFS/tutorial_cn20241/blob/main/Amazon%20Athena/athletes%20new.csv]
