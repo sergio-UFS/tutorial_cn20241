@@ -15,7 +15,7 @@ processados serão feitas as consultas com o AWS Athena.
 Fonte utilizada no tutorial: Dados abertos governamentais
 > https://www.kaggle.com/datasets/willianoliveiragibin/olympics-2024
 
-
+[https://github.com/sergio-UFS/tutorial_cn20241/blob/main/Amazon%20Athena/athletes%20new.csv]
 
 ### 2. Configuração de Bucket S3
 
