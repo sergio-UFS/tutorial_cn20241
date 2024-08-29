@@ -19,11 +19,11 @@
 
 ### Criando o modelo produtor consumidor
 1. Crie um ambiente do **Cloud9**
-  - Clique em **Criar ambiente**
-  - Selecione um nome para o ambiente e em **Tipo de ambiente** deixe selecionada a opção **Nova instância do EC2**
-  - Na **Nova instância do EC2**, deixe selecionada a arquitetura **t2.micro (1 GiB RAM + 1 vCPU)** e a plataforma **Ubuntu Server 22.04 LTS**
-  - Em configurações de rede, selecione a opção **Secure Shell (SSH)**
-  - Clique em **Criar**
+   - Clique em **Criar ambiente**
+   - Selecione um nome para o ambiente e em **Tipo de ambiente** deixe selecionada a opção **Nova instância do EC2**
+   - Na **Nova instância do EC2**, deixe selecionada a arquitetura **t2.micro (1 GiB RAM + 1 vCPU)** e a plataforma **Ubuntu Server 22.04 LTS**
+   - Em configurações de rede, selecione a opção **Secure Shell (SSH)**
+   - Clique em **Criar**
 2. Abra seu ambiente no Cloud9
 3. Dentro do ambiente, crie os arquivos **produtor.py** e **consumidor.py**, disponibilizados nesse repositório
 4. No terminal, digite o comando **pip3 install boto3** (biblioteca para interagir com serviços aws)
