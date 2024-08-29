@@ -2,7 +2,7 @@ import json
 import boto3
 import random
 
-stream_name = "teste1" #nome da data stream criada
+stream_name = "nome_da_stream" #nome da data stream criada
 region = "us-east-1" #servidor que a data stream se encontra, por padrão é o "us-east-1"
 client_kinesis = boto3.client('kinesis', region_name = region) #inicia um client kinesis com as informações de nome e região da data-stream
 
