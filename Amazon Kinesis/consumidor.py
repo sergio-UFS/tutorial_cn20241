@@ -1,6 +1,6 @@
 import boto3
 
-stream_name = "teste1" # Nome da data stream criada
+stream_name = "nome_da_stream" # Nome da data stream criada
 region = "us-east-1" # Servidor que a data stream se encontra, por padrão é o "us-east-1"
 client_kinesis = boto3.client('kinesis', region_name = region) # Inicia um client kinesis com as informações de nome e região da data-stream
 
