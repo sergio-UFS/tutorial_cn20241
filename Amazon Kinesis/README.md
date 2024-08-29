@@ -2,4 +2,4 @@
 
 ## Como funciona o Amazon Kinesis?
 
-!(https://www.darede.com.br/wp-content/uploads/2023/09/kinesis.png)
+![Representação da stream de dados do Kinesis](https://www.darede.com.br/wp-content/uploads/2023/09/kinesis.png)
