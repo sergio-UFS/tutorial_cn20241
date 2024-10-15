@@ -1,36 +1,26 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, countDistinct
-from pyspark.ml.feature import StringIndexer
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+from pyspark.sql.functions import col, when
 
 if __name__ == "__main__":
     # Iniciar uma sessão Spark
     spark = SparkSession.builder.appName("ProcessCSV").getOrCreate()
 
-
-    input_path = "s3://aws-logs-188255563909-us-east-1/dataset_link_phishing.csv"
-
-    # Ler o CSV com o schema definido
+    # Caminho do arquivo CSV no S3
+    input_path = "s3://bucket-projeto-cn2024/dataset_link_phishing.csv"
+    
+    # Carregar o arquivo CSV
     df = spark.read.csv(input_path, header=True, inferSchema=True)
+    
+    # Exemplo de processamento: Contar o número de linhas
+    filtered_df = df.select('url','google_index','page_rank',"web_traffic","nb_hyperlinks","domain_age","phish_hints","ratio_extHyperlinks","ratio_intHyperlinks","longest_word_path","longest_words_raw",'status')
 
-    # Selecionar colunas
-    selected_columns = ["url", "url_length", "hostname_length", "ip", "total_of.", "total_of-", "total_of@", "total_of?", "total_of&", "https_token", "status"]
-    df_selected = df.select(selected_columns)
+    filtered_df = filtered_df.withColumn("status_boolean", when(col("status") == "legitimate", 0).when(col("status") == "phishing", 1).otherwise(None))
 
+    filtered_df = filtered_df.drop("status")
 
-    # Obter labels únicos
-    labels = df_selected.select("status").distinct().collect()
-    print("Labels únicos:", [row["status"] for row in labels])
+    # Salvar o resultado em outro caminho no S3
+    output_path = "s3://aws-logs-188255563909-us-east-1/output/"
+    filtered_df.write.csv(output_path, header=True, mode="overwrite")
 
-    # Dividir os dados em conjuntos de treino e teste
-    train_df, test_df = df_selected.randomSplit([0.7, 0.3], seed=42)
-
-    # Definir caminhos de saída
-    train_output_path = "s3://aws-logs-188255563909-us-east-1/output/"
-    test_output_path = "s3://aws-logs-188255563909-us-east-1/output/"
-
-    # Salvar os dataframes como CSV
-    train_df.write.csv(train_output_path, header=True, mode="overwrite")
-    test_df.write.csv(test_output_path, header=True, mode="overwrite")
-
+    # Parar a sessão Spark
     spark.stop()
